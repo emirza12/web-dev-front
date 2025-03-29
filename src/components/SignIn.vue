@@ -7,7 +7,7 @@ import { postJSON } from './api-client/api-client';
 const username = ref('')
 const password = ref('')
 
-function onSubmit(e:Event){
+function onSubmit(e: Event){
     // e.preventDefault() le .prevent dérrière submit fait la même chose
     postJSON("/api/token", {
         username : username.value,
@@ -30,7 +30,7 @@ function onSubmit(e:Event){
             />
             <BasicInput 
                 id = "password"
-                type = "text"
+                type = "password"
                 label = "Password"
                 v-model = "password"
             />

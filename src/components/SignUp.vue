@@ -9,7 +9,7 @@ const password = ref('')
 const email = ref('')
 
 function onSubmit(e:Event){
-    postJSON("/api/token", {
+    postJSON("/api/users", {
         username : username.value,
         email : email.value,
         password : password.value,
@@ -37,7 +37,7 @@ function onSubmit(e:Event){
             />
             <BasicInput 
                 id = "password"
-                type = "text"
+                type = "password"
                 label = "Password"
                 v-model = "password"
             />

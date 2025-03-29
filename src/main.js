@@ -1,6 +1,8 @@
 import {createApp} from "vue"
 
 import { createRouter, createWebHashHistory } from "vue-router"
+import SignIn from "./components/SignIn.vue"
+import SignUp from "./components/SignUp.vue"
 import 'uno.css'
 
 const routes = [
@@ -27,7 +29,6 @@ const router = createRouter({
 })
 
 import App from './App.vue'
-import SignIn from "./components/SignIn.vue"
 
 createApp(App)
 .use(router)
