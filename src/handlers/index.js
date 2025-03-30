@@ -1,6 +1,6 @@
 import SignIn from "../components/SignIn.vue"
 import SignUp from "../components/SignUp.vue"
-import Connected from "../components/Connected.vue"
+import Ingredients from "../components/ingredients.vue"
 import config from '../config.js';
 import { createRouter, createWebHashHistory } from "vue-router"
 
@@ -21,9 +21,9 @@ const routes = [
         component : SignUp
     },
     {
-        name : 'Connected',
-        path : '/connected',
-        component : Connected,
+        name : 'Ingredients',
+        path : '/ingredients',
+        component : Ingredients,
         meta: { requiresAuth: true }
     }
 ];

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import BasicInput from './BasicInput.vue';
 import { postJSON } from '../api-client/api-client';
 import config from '../config.js';
 import router from '../handlers/index.js';
@@ -20,7 +19,7 @@ async function onSubmit(e: Event) {
 
         if (data.token) {
             localStorage.setItem('authToken', data.token);
-            router.push('/connected');
+            router.push('/ingredients');
         }
     } catch (error) {
         console.error("Error during connection:", error);
