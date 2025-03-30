@@ -10,13 +10,19 @@ const username = ref('')
 const password = ref('')
 
 
-async function onSubmit(e:Event){
+async function onSubmit(e: Event) {
     try {
-        await postJSON(`${config.apiBaseURL}/api/token`, {
-        username : username.value,
-        password : password.value,
-    })
-        router.push('/connected');
+        const response = await postJSON(`${config.apiBaseURL}/api/token`, {
+            username: username.value,
+            password: password.value
+        });
+
+        const data = await response.json(); 
+
+        if (data.token) {
+            localStorage.setItem('authToken', data.token);
+            router.push('/connected');
+        }
     } catch (error) {
         console.error("Error during connection:", error);
     }
