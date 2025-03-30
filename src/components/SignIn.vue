@@ -4,16 +4,22 @@ import {ref} from 'vue'
 import BasicInput from './BasicInput.vue';
 import { postJSON } from '../api-client/api-client';
 import config from '../config.js';
+import router from '../handlers/index.js';
 
 const username = ref('')
 const password = ref('')
 
-function onSubmit(e: Event){
-    // e.preventDefault() le .prevent derrière submit fait la même chose
-    postJSON(`${config.apiBaseURL}/api/token`, {
+
+async function onSubmit(e:Event){
+    try {
+        await postJSON(`${config.apiBaseURL}/api/token`, {
         username : username.value,
         password : password.value,
     })
+        router.push('/connected');
+    } catch (error) {
+        console.error("Error during connection:", error);
+    }
 }
 
 </script>

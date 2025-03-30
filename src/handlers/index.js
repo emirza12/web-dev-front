@@ -1,5 +1,6 @@
 import SignIn from "../components/SignIn.vue"
 import SignUp from "../components/SignUp.vue"
+import Connected from "../components/Connected.vue"
 import { createRouter, createWebHashHistory } from "vue-router"
 
 const routes = [
@@ -17,6 +18,11 @@ const routes = [
         name : 'SignUp',
         path : '/signup',
         component : SignUp
+    },
+    {
+        name : 'Connected',
+        path : '/connected',
+        component : Connected
     }
 ];
 

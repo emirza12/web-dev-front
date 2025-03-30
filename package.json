@@ -2,6 +2,7 @@
   "name": "web_dev-project-reset",
   "version": "1.0.0",
   "main": "main.js",
+  "type": "module",
   "scripts": {
     "start": "vite",
     "build": "vite build"
