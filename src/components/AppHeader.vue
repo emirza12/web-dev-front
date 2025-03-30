@@ -2,13 +2,11 @@
     <header class="header">
       <div class="container">
         <nav class="navbar">
-          <!-- Liens à gauche -->
           <ul class="nav-list left">
             <li><router-link to="/ingredients">Ingredients</router-link></li>
-            <li><router-link to="/cart">Cart</router-link></li>
+            <li><router-link to="/cart">My Cart</router-link></li>
           </ul>
   
-          <!-- Bouton Logout à droite -->
           <ul class="nav-list right">
             <li><button @click="logout" class="button">Logout</button></li>
           </ul>

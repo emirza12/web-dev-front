@@ -1,6 +1,7 @@
 import SignIn from "../components/SignIn.vue"
 import SignUp from "../components/SignUp.vue"
 import Ingredients from "../components/ingredients.vue"
+import Cart from "../components/Cart.vue"
 import config from '../config.js';
 import { createRouter, createWebHashHistory } from "vue-router"
 
@@ -25,7 +26,14 @@ const routes = [
         path : '/ingredients',
         component : Ingredients,
         meta: { requiresAuth: true }
+    },
+    {
+        name : 'Cart',
+        path : '/cart',
+        component : Cart,
+        meta: { requiresAuth: true }
     }
+
 ];
 
 const router = createRouter({

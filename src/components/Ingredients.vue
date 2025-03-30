@@ -13,6 +13,7 @@
           <h3>{{ ingredient.name }}</h3>
           <p>Category: {{ ingredient.category }}</p>
           <p>Price: {{ ingredient.price }} €/{{ ingredient.unit }}</p>
+          <button @click="addToCart(ingredient._id)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -27,6 +28,7 @@ import config from '../config.js';
 
 const ingredients = ref([]);
 
+
 async function fetchIngredients() {
   try {
     const response = await fetch(`${config.apiBaseURL}/api/ingredients`, {
@@ -35,13 +37,45 @@ async function fetchIngredients() {
       }
     });
     if (!response.ok) {
-      throw new Error('Erreur de récupération des ingrédients');
+      throw new Error('Error fetching ingredients');
     }
     ingredients.value = await response.json();
+
   } catch (error) {
     console.error(error);
   }
 }
+
+
+
+async function addToCart(ingredientId) {
+  const quantity = 1;
+
+  try {
+    const response = await fetch(`${config.apiBaseURL}/api/cart`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+      },
+      body: JSON.stringify({
+        ingredientId: ingredientId,
+        quantity: quantity,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      console.error('Error adding to cart:', errorResponse);
+      throw new Error('Error adding to cart');
+    }
+
+    const cart = await response.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 
 onMounted(() => {
   fetchIngredients();
@@ -53,7 +87,6 @@ onMounted(() => {
   padding: 20px;
   margin-top: 80px;
 }
-
 
 h1 {
   font-size: 2rem;
