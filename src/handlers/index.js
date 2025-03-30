@@ -1,6 +1,6 @@
 import SignIn from "../components/SignIn.vue"
 import SignUp from "../components/SignUp.vue"
-import Ingredients from "../components/ingredients.vue"
+import Ingredients from "../components/Ingredients.vue"
 import Cart from "../components/Cart.vue"
 import config from '../config.js';
 import { createRouter, createWebHashHistory } from "vue-router"
