@@ -7,12 +7,8 @@ import { RouterLink, RouterView } from 'vue-router';
 
 <template>
     <div>
-        <AppHeader />
+        
         <main>
-            <header>
-                <RouterLink to ='/signin'> Sign in</RouterLink> 
-                <RouterLink to ='/signup'> Sign up</RouterLink> 
-            </header>
             <RouterView />
         </main>
     </div>
