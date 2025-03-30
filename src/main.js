@@ -1,33 +1,7 @@
 import {createApp} from "vue"
+import router from "./handlers/index.js"
 
-import { createRouter, createWebHashHistory } from "vue-router"
-import SignIn from "./components/SignIn.vue"
-import SignUp from "./components/SignUp.vue"
 import 'uno.css'
-
-const routes = [
-    {
-        name : 'Home',
-        path : '/',
-        redirect : '/signin'
-    },
-    {
-        name : 'SignIn',
-        path : '/signin',
-        component : SignIn
-    },
-    {
-        name : 'SignUp',
-        path : '/signup',
-        component : SignUp
-    }
-]
-
-const router = createRouter({
-    history : createWebHashHistory(), 
-    routes,
-})
-
 import App from './App.vue'
 
 createApp(App)
