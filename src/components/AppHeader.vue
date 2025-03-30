@@ -1,5 +1,5 @@
 <template>
     <header>
-        <h1>Bonjour keee</h1>
+        <h1>You can connect ! </h1>
     </header>
 </template>
