@@ -1,5 +1,5 @@
 <template>
-  <AppHeader />
+  <AppHeader ref="appHeaderRef" />
   <h1 style="text-align: center;">Welcome! You can now start shopping!</h1>
   <div class="container">
     <div class="ingredients-list">
@@ -27,7 +27,7 @@ import AppHeader from './AppHeader.vue';
 import config from '../config.js';
 
 const ingredients = ref([]);
-
+const appHeaderRef = ref();
 
 async function fetchIngredients() {
   try {
@@ -45,8 +45,6 @@ async function fetchIngredients() {
     console.error(error);
   }
 }
-
-
 
 async function addToCart(ingredientId) {
   const quantity = 1;
@@ -71,11 +69,13 @@ async function addToCart(ingredientId) {
     }
 
     const cart = await response.json();
+    if (appHeaderRef.value) {
+      appHeaderRef.value.fetchCartCount();
+    }
   } catch (error) {
     console.error(error);
   }
 }
-
 
 onMounted(() => {
   fetchIngredients();
