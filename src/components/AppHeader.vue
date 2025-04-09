@@ -4,7 +4,12 @@
         <nav class="navbar">
           <ul class="nav-list left">
             <li><router-link to="/ingredients">Ingredients</router-link></li>
-            <li><router-link to="/cart">My Cart</router-link></li>
+            <li>
+              <router-link to="/cart">
+                My Cart
+                <span v-if="cartItemCount > 0" class="cart-count">{{ cartItemCount }}</span>
+              </router-link>
+            </li>
           </ul>
   
           <ul class="nav-list right">
@@ -16,8 +21,31 @@
   </template>
   
   <script lang="ts" setup>
+  import { ref, onMounted } from 'vue';
   import router from '../handlers/index.js';
+  import config from '../config.js';
   import '../style.css'; 
+  
+  const cartItemCount = ref(0);
+  
+  const fetchCartCount = async () => {
+    try {
+      const token = localStorage.getItem('authToken');
+      const response = await fetch(`${config.apiBaseURL}/api/cart`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      cartItemCount.value = data.items ? data.items.length : 0;
+    } catch (error) {
+      console.error('Error fetching cart:', error);
+    }
+  };
+  
+  onMounted(() => {
+    fetchCartCount();
+  });
   
   function logout() {
     localStorage.removeItem('authToken');
@@ -96,6 +124,17 @@
 
 .button:hover {
   background-color: var(--secondary-color);
+}
+
+.cart-count {
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  margin-left: 5px;
+  position: relative;
+  top: -8px;
 }
 
   </style>
