@@ -68,9 +68,9 @@ async function addToCart(ingredientId) {
       throw new Error('Error adding to cart');
     }
 
-    const cart = await response.json();
+    await response.json();
     if (appHeaderRef.value) {
-      appHeaderRef.value.fetchCartCount();
+      await appHeaderRef.value.fetchCartCount();
     }
   } catch (error) {
     console.error(error);
@@ -131,5 +131,20 @@ h2 {
   font-size: 1rem;
   color: var(--text-light);
   margin-bottom: 8px;
+}
+
+.ingredient-card button {
+  background-color: rgb(94, 92, 230); /* Violet */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.ingredient-card button:hover {
+  background-color: rgb(75, 73, 184); /* Violet plus foncé au survol */
 }
 </style>

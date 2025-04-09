@@ -37,7 +37,7 @@
         },
       });
       const data = await response.json();
-      cartItemCount.value = data.items ? data.items.length : 0;
+      cartItemCount.value = data.items ? data.items.reduce((total, item) => total + item.quantity, 0) : 0;
     } catch (error) {
       console.error('Error fetching cart:', error);
     }
@@ -51,6 +51,8 @@
     localStorage.removeItem('authToken');
     router.push('/signin');
   }
+  
+  defineExpose({ fetchCartCount });
   </script>
   
   
@@ -65,6 +67,7 @@
   left: 0;
   z-index: 1000;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  height: 80px;
 }
 
 .container {
